@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Article Assistant Chat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+    }
+
+    #container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .panel {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        flex: 1 1 400px;
+        max-width: 600px;
+    }
+
+    #chat-box {
+        height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fafafa;
+    }
+
+    .message {
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 20px;
+        max-width: 70%;
+        word-wrap: break-word;
+    }
+
+    .user {
+        background-color: #0084ff;
+        color: white;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .bot {
+        background-color: #e5e5ea;
+        color: black;
+        margin-right: auto;
+        text-align: left;
+    }
+
+    #input-section {
+        margin-top: 10px;
+        display: flex;
+        gap: 5px;
+    }
+
+    #input-section input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+    }
+
+    #article-section textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        resize: vertical;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        background-color: #0084ff;
+        color: white;
+    }
+
+    button:hover {
+        background-color: #006bbd;
+    }
+
+    #summary-response, #category-response, #article-flash {
+        background-color: #e5e5ea;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+
+    #article-flash.success { color: green; font-weight: bold; }
+    #article-flash.error { color: red; font-weight: bold; }
+
+    h2, h3 { margin-top: 0; }
+</style>
+</head>
+<body>
+<div id="container">
+    <!-- Left panel: Article input and processing -->
+    <div class="panel" id="article-panel">
+        <div id="article-section">
+            <h2>Input Article</h2>
+            <textarea id="article" rows="6" placeholder="Paste your article here"></textarea>
+            <div id="article-flash"></div>
+            <button onclick="submit_article()">Submit Article</button>
+            <br><br>
+            <button onclick="summarize()">Summarize</button>
+            <button onclick="categorize()">Categorize</button>
+            <div>
+                <h3>Summary:</h3>
+                <div id="summary-response"></div>
+                <h3>Category:</h3>
+                <div id="category-response"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right panel: Chat interface -->
+    <div class="panel" id="chat-panel">
+        <h2>Chat with Assistant</h2>
+        <div id="chat-box"></div>
+        <div id="input-section">
+            <input type="text" id="question" placeholder="Ask a question">
+            <button onclick="sendChat()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function appendMessage(text, sender) {
+    const chatBox = document.getElementById("chat-box");
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("message", sender);
+    msgDiv.textContent = text;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendChat() {
+    const message = document.getElementById("question").value;
+    if (!message) return;
+    appendMessage(message, "user");
+    document.getElementById("question").value = "";
+
+    const res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message})
+    });
+    const data = await res.json();
+    appendMessage(data.response, "bot");
+}
+
+async function submit_article() {
+    const article_text = document.getElementById("article").value;
+    const flashDiv = document.getElementById("article-flash");
+
+    if (!article_text) {
+        flashDiv.textContent = "Please enter an article first!";
+        flashDiv.className = "error";
+        return;
+    }
+
+    const res = await fetch("/insert_article", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({article: article_text})
+    });
+    const data = await res.json();
+
+    if (data.status === "success") {
+        flashDiv.textContent = "Article received!";
+        flashDiv.className = "success";
+    } else {
+        flashDiv.textContent = "Failed to submit article.";
+        flashDiv.className = "error";
+    }
+
+    // auto-clear flash after 3 seconds
+    setTimeout(() => { flashDiv.textContent = ""; }, 3000);
+}
+
+async function summarize() {
+    const article = document.getElementById("article").value;
+    const res = await fetch("/summarize", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({article})
+    });
+    const data = await res.json();
+    document.getElementById("summary-response").textContent = data.summary;
+}
+
+async function categorize() {
+    const article = document.getElementById("article").value;
+    const res = await fetch("/categorize", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({article})
+    });
+    const data = await res.json();
+    document.getElementById("category-response").textContent = data.category;
+}
+</script>
+</body>
+</html>
