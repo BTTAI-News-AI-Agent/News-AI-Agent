@@ -13,7 +13,7 @@ export default function OutputPanel({category, summary, isLoadingCategory, isLoa
 {/* ToDo: summary output */}
       <h3>Summary</h3>
       <div className="output-box">
-        
+        {isLoadingSummary ? "Running model..." : summary}
       </div>
      
     </div>

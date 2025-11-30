@@ -42,7 +42,17 @@ export default function Home() {
 
   // handler for Summarization button
   async function handleSummarize() {
-    
+    try {
+      setIsLoadingSummary(true);
+      setError(null);
+      const result = await summarizeNews(headline, description);
+      setSummary(result.summary);
+    } catch (e) {
+      console.error(e);
+      setError("Failed to summarize article.");
+    } finally {
+      setIsLoadingSummary(false);
+    }
   }
 
   // handler for Chatbot 

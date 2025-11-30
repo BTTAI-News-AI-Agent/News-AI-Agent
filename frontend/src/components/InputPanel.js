@@ -1,7 +1,7 @@
 import Button from "./UI/Button";
 import TextBox from "./UI/TextBox";
 
-export default function InputPanel({headline, description, setHeadline,setDescription,onCategorize,onSummarize}) {
+export default function InputPanel({headline, description, setHeadline, setDescription, onCategorize, onSummarize}) {
   return (
     <div className="card">
       <h2>Input</h2>
@@ -23,8 +23,7 @@ export default function InputPanel({headline, description, setHeadline,setDescri
       <div className="button-row">
         <Button onClick={onCategorize}> Categorization </Button>
 
-        {/* ToDo; button for summary */}
-        <Button>  Summarization </Button> 
+        <Button onClick={onSummarize}>  Summarization </Button> 
       </div>
 
     </div>
