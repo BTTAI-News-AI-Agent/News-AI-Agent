@@ -2,7 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.after_request
+def after_request(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    return response
 
 @app.route("/api/categorize", methods=["POST"])
 def categorize():
@@ -69,4 +76,4 @@ def chat():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=5001, debug=True)
