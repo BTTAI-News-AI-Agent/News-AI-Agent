@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from models.categorization.categorize import predict_category
 
 app = Flask(__name__)
 CORS(app)  
@@ -10,8 +11,8 @@ def categorize():
     headline = data.get("headline", "")
     description = data.get("description", "")
 
-    # call categorization model here
-    category = "placeholder-category"
+    # call predict_category from categorization.py
+    category = predict_category(headline, description)
 
     return jsonify({"category": category})
 
@@ -39,4 +40,5 @@ def chat():
 
 
 if __name__ == "__main__":
+    print("Starting Flask server...")
     app.run(port=5000, debug=True)

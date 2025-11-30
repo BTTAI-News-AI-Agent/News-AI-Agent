@@ -58,14 +58,12 @@ export default function Home() {
       </header>
 
       <main className="main-grid">
-        <section>
+        <section className = "input-card">
           <InputPanel 
             headline={headline}
             description={description}
             setHeadline={setHeadline}
             setDescription={setDescription}
-            onCategorize={handleCategorize}
-            onSummarize={handleSummarize}
           />
         </section>
 
@@ -83,7 +81,11 @@ export default function Home() {
         <Chatbot 
           messages={chatmessages}
           onSend={handleSendChat}
-          isLoading={isChatLoading}/>
+          isLoading={isChatLoading}
+          headline={headline}
+          description={description}
+          onCategorize={handleCategorize}
+          onSummarize={handleSummarize}/>
       </section>
     </div>
   );

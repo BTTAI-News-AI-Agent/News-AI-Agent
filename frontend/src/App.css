@@ -24,8 +24,8 @@ body {
 
 .card {
   background: white;
-  border-radius: 12px;
-  padding: 16px 18px;
+  border-radius: 18px;
+  padding: 16px 50px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
 
@@ -78,4 +78,8 @@ body {
 
 .chat-message.bot {
   color: #16a34a;
+}
+
+.input-card .card {
+  min-height: 250px; 
 }

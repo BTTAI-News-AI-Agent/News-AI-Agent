@@ -1,7 +1,7 @@
 export default function OutputPanel({category, summary, isLoadingCategory, isLoadingSummary, error}) {
   return (
     <div className="card">
-      <h2>Output</h2>
+      
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 

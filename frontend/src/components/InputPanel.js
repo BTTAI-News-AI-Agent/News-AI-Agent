@@ -4,7 +4,7 @@ import TextBox from "./UI/TextBox";
 export default function InputPanel({headline, description, setHeadline,setDescription,onCategorize,onSummarize}) {
   return (
     <div className="card">
-      <h2>Input</h2>
+      
 
       <label>News headline</label>
       <input 
@@ -18,13 +18,14 @@ export default function InputPanel({headline, description, setHeadline,setDescri
         rows={4} 
         placeholder="Paste short article text here" 
         value={description}
-        onChange={(e) => setDescription(e.target.value)}/>
+        onChange={(e) => setDescription(e.target.value)}
+        style={{ minHeight: "150px" }}/>
 
       <div className="button-row">
-        <Button onClick={onCategorize}> Categorization </Button>
+        {/* <Button onClick={onCategorize}> Categorization </Button> */}
 
         {/* ToDo; button for summary */}
-        <Button>  Summarization </Button> 
+        {/* <Button>  Summarization </Button>  */}
       </div>
 
     </div>
