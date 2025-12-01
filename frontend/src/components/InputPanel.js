@@ -1,7 +1,7 @@
 import Button from "./UI/Button";
 import TextBox from "./UI/TextBox";
 
-export default function InputPanel({headline, description, setHeadline,setDescription,onCategorize,onSummarize}) {
+export default function InputPanel({headline, description, setHeadline, setDescription, onCategorize, onSummarize,onClearInput}) {
   return (
     <div className="card">
       
@@ -22,10 +22,11 @@ export default function InputPanel({headline, description, setHeadline,setDescri
         style={{ minHeight: "150px" }}/>
 
       <div className="button-row">
-        {/* <Button onClick={onCategorize}> Categorization </Button> */}
+        <Button onClick={onCategorize}> Categorization </Button>
 
-        {/* ToDo; button for summary */}
-        {/* <Button>  Summarization </Button>  */}
+        <Button onClick = {onSummarize}>  Summarization </Button> 
+
+        <Button onClick = {onClearInput}> Clear </Button>
       </div>
 
     </div>

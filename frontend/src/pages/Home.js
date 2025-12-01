@@ -27,6 +27,10 @@ export default function Home() {
 
   // handler for Categorization button
   async function handleCategorize() {
+    if (!headline.trim() && !description.trim()) {
+    setError("Please enter a headline or description first.");
+    return;
+    }  
     try {
       setIsLoadingCategory(true);
       setError(null);
@@ -40,9 +44,35 @@ export default function Home() {
     }
   }
 
+  function handleClearInputs() {
+    setHeadline("");
+    setDescription("");
+  }
+
+  function handleClearOutput() {
+  setCategory("");
+  setSummary("");
+  setError(null);
+}
+
   // handler for Summarization button
   async function handleSummarize() {
-    
+
+    if (!headline.trim() && !description.trim()) {
+    setError("Please enter a headline or description first.");
+    return;
+    }
+    try {
+      setIsLoadingSummary(true);
+      setError(null);
+      const result = await summarizeNews(headline, description);
+      setSummary(result.summary);
+    } catch (e) {
+      console.error(e);
+      setError("Failed to summarize article.");
+    } finally {
+      setIsLoadingSummary(false);
+    }
   }
 
   // handler for Chatbot 
@@ -64,7 +94,9 @@ export default function Home() {
             description={description}
             setHeadline={setHeadline}
             setDescription={setDescription}
-          />
+            onCategorize={handleCategorize}
+            onSummarize={handleSummarize}
+            onClearInput={handleClearInputs}/> 
         </section>
 
         <section>
@@ -73,7 +105,8 @@ export default function Home() {
             summary={summary}
             isLoadingCategory={isLoadingCategory}
             isLoadingSummary={isLoadingSummary}
-            error={error}/>
+            error={error}
+            onCLearOutput={handleClearOutput}/>
         </section>
       </main>
 

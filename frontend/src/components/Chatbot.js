@@ -13,12 +13,12 @@ export default function Chatbot({messages, onSend, isLoading, headline, descript
       </div>
 
  {/* categorization and summarization buttons */}
-      <div className="button-row">
+      {/* <div className="button-row">
               <Button onClick={onCategorize}> Categorization </Button>
       
               {/* ToDo; button for summary */}
-              <Button>  Summarization </Button> 
-            </div>
+              {/* <Button onClick = {onSummarize}>  Summarization </Button>  */}
+            {/* </div>  */}
 
 
 
