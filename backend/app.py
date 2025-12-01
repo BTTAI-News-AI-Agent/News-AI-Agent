@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from models.categorization.categorize import predict_category
+from models.chatbot.chatbot import setup, askQuestion
 
 app = Flask(__name__)
 CORS(app)  
+client = setup()
 
 @app.route("/api/categorize", methods=["POST"])
 def categorize():
@@ -23,8 +25,12 @@ def summarize():
     headline = data.get("headline", "")
     description = data.get("description", "")
 
-    # call summarization model here
-    summary = "placeholder summary of the article"
+    # Using GPT Summarization
+    summary = askQuestion(
+        client,
+        description,
+        question="Summarize the article in 3–5 sentences."
+    )
 
     return jsonify({"summary": summary})
 
