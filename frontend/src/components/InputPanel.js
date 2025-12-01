@@ -1,10 +1,10 @@
 import Button from "./UI/Button";
 import TextBox from "./UI/TextBox";
 
-export default function InputPanel({headline, description, setHeadline, setDescription, onCategorize, onSummarize}) {
+export default function InputPanel({headline, description, setHeadline, setDescription, onCategorize, onSummarize,onClearInput}) {
   return (
     <div className="card">
-      <h2>Input</h2>
+      
 
       <label>News headline</label>
       <input 
@@ -18,12 +18,15 @@ export default function InputPanel({headline, description, setHeadline, setDescr
         rows={4} 
         placeholder="Paste short article text here" 
         value={description}
-        onChange={(e) => setDescription(e.target.value)}/>
+        onChange={(e) => setDescription(e.target.value)}
+        style={{ minHeight: "150px" }}/>
 
       <div className="button-row">
         <Button onClick={onCategorize}> Categorization </Button>
 
-        <Button onClick={onSummarize}>  Summarization </Button> 
+        <Button onClick = {onSummarize}>  Summarization </Button> 
+
+        <Button onClick = {onClearInput}> Clear </Button>
       </div>
 
     </div>
