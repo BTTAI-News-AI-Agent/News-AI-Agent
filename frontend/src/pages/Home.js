@@ -6,6 +6,7 @@ import Chatbot from "../components/Chatbot";
 
 import { categorizeNews } from "../api/categorize";
 import { summarizeNews } from "../api/summarize";
+import { sendChat } from "../api/chat";
 
 export default function Home() {
   // article text
@@ -17,7 +18,7 @@ export default function Home() {
   const [summary, setSummary] = useState("");
 
   // chatbot prompt text
-  const [chatmessages, setChatMessages] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
 
   // loading and error
   const [isLoadingCategory, setIsLoadingCategory] = useState(false);
@@ -76,10 +77,38 @@ export default function Home() {
   }
 
   // handler for Chatbot 
-  async function handleSendChat(){
-
+  async function handleSendChat(question) {
+   if (!headline.trim() && !description.trim()) {
+    setError("Please enter a headline or description first.");
+    return;
   }
 
+  if (!question.trim()) return;
+
+  // Add user message to chat as an object in the array
+  setChatMessages((prev) => [...prev, { sender: "user", text: question }]);
+
+  try {
+    setIsChatLoading(true);
+    setError(null);
+    const reply = await sendChat(headline, description, question);
+    
+    // Add bot response as an object in the array
+    setChatMessages((prev) => [...prev, { sender: "bot", text: reply }]);
+  } catch (e) {
+    console.error(e);
+    
+    // Add error message to chat
+    setChatMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: "Sorry, something went wrong." },
+    ]);
+  } finally {
+    setIsChatLoading(false);
+  }
+}
+
+// return home page contents to display
   return (
     <div className="page">
       <header className="header">
@@ -112,11 +141,11 @@ export default function Home() {
 
       <section>
         <Chatbot 
-          messages={chatmessages}
-          onSend={handleSendChat}
-          isLoading={isChatLoading}
           headline={headline}
           description={description}
+          messages={chatMessages}
+          onSend={handleSendChat}
+          isLoading={isChatLoading}
           onCategorize={handleCategorize}
           onSummarize={handleSummarize}/>
       </section>

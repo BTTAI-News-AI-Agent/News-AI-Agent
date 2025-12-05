@@ -85,7 +85,7 @@ def chat():
 
     try:
         reply = askQuestion(chat_client, article, question)
-        return jsonify({"answer": reply})   #
+        return jsonify({"answer": reply})   
     except Exception as e:
         print("CHAT ERROR:", e)
         return jsonify({"error": str(e)}), 500
