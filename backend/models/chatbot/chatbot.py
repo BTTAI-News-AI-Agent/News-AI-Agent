@@ -1,7 +1,8 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-
+from models.summarization.summarization import generate_summary
+from models.categorization.categorize import predict_category
 #chatbot functionality
 
 def setup():
@@ -54,3 +55,97 @@ def askQuestion(client: OpenAI, article, question= "Summarize the article."):
     return response.choices[0].message.content
 
 
+################# AGENT #####################
+
+def run_agent(client: OpenAI, headline, description, question):
+    print("agent")
+
+    # The latest user input
+    user_message = question
+
+    # === Step 1: Ask GPT to decide which tool to use ===
+    system_prompt = """
+    You are an autonomous news analysis agent.
+    You have the following tools:
+    1. summarize_article(headline, description) - summarize the article content
+    2. categorize_article(headline, description) - categorize the article into one of the following: business, entertainment, politics, sports, tech
+    
+    Choose ONLY the tool that best answers the user's request.
+    """
+
+    
+    tools = [
+    {
+        "name": "summarize_article",
+        "type": "function",
+        "description": "Summarizes the content of an article",
+        "function": {
+            "name": "summarize_article",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "headline": {"type": "string"},
+                    "description": {"type": "string"}
+                },
+                "required": ["headline", "description"]
+            }
+        }
+    },
+    {
+        "name": "categorize_article",
+        "type": "function",
+        "description": "Categorizes an article into business, entertainment, politics, sports, or tech",
+        "function": {
+            "name": "categorize_article", 
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "headline": {"type": "string"},
+                    "description": {"type": "string"}
+                },
+                "required": ["headline", "description"]
+            }
+        }
+    }
+    ]
+
+
+    # ask GPT to choose a tool
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_message},
+        ],
+        tools=tools
+    )
+
+    msg = response.choices[0].message
+    print(msg.tool_calls, msg.content)
+    # === If GPT chooses a tool ===
+    if msg.tool_calls:
+        tool = msg.tool_calls[0]
+        tool_name = tool.function.name
+
+
+        if tool_name == "summarize_article":
+            print("========== Summarization T5 Model Used ============")
+            return generate_summary( description)
+
+        if tool_name == "categorize_article":
+            print("========== Categorization Classification Model Used ============")
+            return predict_category(headline, description)
+    else:
+        print("========== No Tool Used ============")
+        #add article to prompt
+        user_message += f"\nHeadline: {headline}\nDescription: {description}"
+          # ask GPT to choose a tool
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": user_message},
+            ],
+        )
+        msg = response.choices[0].message
+    # === If GPT answers directly ===
+    return msg.content

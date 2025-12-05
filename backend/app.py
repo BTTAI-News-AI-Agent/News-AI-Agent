@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from models.categorization.categorize import predict_category
 from models.summarization.summarization import generate_summary
-from models.chatbot.chatbot import setup, askQuestion
+from models.chatbot.chatbot import setup, askQuestion, run_agent
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -84,7 +84,8 @@ def chat():
     article = f"Headline: {headline}\n\nDescription: {description}"
 
     try:
-        reply = askQuestion(chat_client, article, question)
+        #reply = askQuestion(chat_client, article, question)
+        reply = run_agent(chat_client, headline, description, question)
         return jsonify({"answer": reply})   
     except Exception as e:
         print("CHAT ERROR:", e)
