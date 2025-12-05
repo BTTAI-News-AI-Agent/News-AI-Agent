@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from models.categorization.categorize import predict_category
+from models.summarization.summarization import generate_summary
+from models.chatbot.chatbot import setup, askQuestion
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
+
+#OpenAI client setup
+chat_client = setup()
 
 @app.after_request
 def after_request(response):
@@ -34,7 +39,7 @@ def summarize():
     print("Headline:", headline)
     print("Description length:", len(description))
 
-    from models.summarization.summarization import generate_summary
+    
 
     try:
         text = headline + ". " + description
@@ -68,12 +73,22 @@ def summarize():
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
-    messages = data.get("chatmessages", [])
-    
-    #call gpt model here
-    reply = "placeholder chat reply"
-    return jsonify({"reply": reply})
+    data = request.get_json() or {}
+
+
+    headline = data.get("headline", "")
+    description = data.get("description", "")
+    question = data.get("question", "Summarize the article.")
+
+   
+    article = f"Headline: {headline}\n\nDescription: {description}"
+
+    try:
+        reply = askQuestion(chat_client, article, question)
+        return jsonify({"answer": reply})   #
+    except Exception as e:
+        print("CHAT ERROR:", e)
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
