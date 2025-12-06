@@ -6,6 +6,7 @@ import Chatbot from "../components/Chatbot";
 
 import { categorizeNews } from "../api/categorize";
 import { summarizeNews } from "../api/summarize";
+import { sendChat } from "../api/chat";
 
 export default function Home() {
   // article text
@@ -17,7 +18,7 @@ export default function Home() {
   const [summary, setSummary] = useState("");
 
   // chatbot prompt text
-  const [chatmessages, setChatMessages] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
 
   // loading and error
   const [isLoadingCategory, setIsLoadingCategory] = useState(false);
@@ -76,10 +77,28 @@ export default function Home() {
   }
 
   // handler for Chatbot 
-  async function handleSendChat(){
+   async function handleSendChat(userInput) {
+  
+  if (!userInput.trim()) return;
 
+  try {
+    setIsChatLoading(true);
+    setError(null);
+
+    const botReply = await sendChat(headline, description, userInput);
+
+    setChatMessages([{ sender: "bot", text: botReply }]);
+
+  } catch (e) {
+    console.error(e);
+    setError("Chat error");
+  } finally {
+    setIsChatLoading(false);
   }
+    
+}
 
+// return home page contents to display
   return (
     <div className="page">
       <header className="header">
@@ -112,11 +131,11 @@ export default function Home() {
 
       <section>
         <Chatbot 
-          messages={chatmessages}
-          onSend={handleSendChat}
-          isLoading={isChatLoading}
           headline={headline}
           description={description}
+          messages={chatMessages}
+          onSend={handleSendChat}
+          isLoading={isChatLoading}
           onCategorize={handleCategorize}
           onSummarize={handleSummarize}/>
       </section>

@@ -58,14 +58,7 @@ body {
   margin-bottom: 12px;
 }
 
-.chat-window {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 8px 10px;
-  height: 150px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
+
 
 .chat-input-row {
   display: flex;
@@ -83,3 +76,5 @@ body {
 .input-card .card {
   min-height: 250px; 
 }
+
+

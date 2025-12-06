@@ -1,33 +1,53 @@
+import React, { useState } from "react";
 import Button from "./UI/Button";
+import TextBox from "./UI/TextBox";
 
-export default function Chatbot({messages, onSend, isLoading, headline, description, setHeadline,setDescription, onCategorize,onSummarize}) {
+export default function Chatbot({headline, description, messages, onSend, isLoading,}) {
+  
+  const [question, setQuestion] = useState("");
+
+  const BotMessage =
+    Array.isArray(messages) && messages.length > 0
+      ? messages[messages.length - 1].text
+      : "Ask me anything about this article.";
+
+  function handleSend() {
+    if (!question.trim() || isLoading) return;
+    onSend(question);
+    setQuestion(""); // clear user input
+  }
+
   return (
     <div className="card">
       <h2>News-bot</h2>
 
+      {/* Bot reply */}
       <div className="chat-window">
-        {/* ToDo: render real messages here */}
-        <div className="chat-message bot">
-          Bot: Ask me anything about this article.
+        <div className="message bot-message">
+          <strong>Bot:</strong> {BotMessage}
         </div>
+
+        {isLoading && (
+          <div className="message bot-message">
+            <strong>Bot:</strong> Thinking...
+          </div>
+        )}
       </div>
 
- {/* categorization and summarization buttons */}
-      {/* <div className="button-row">
-              <Button onClick={onCategorize}> Categorization </Button>
-      
-              {/* ToDo; button for summary */}
-              {/* <Button onClick = {onSummarize}>  Summarization </Button>  */}
-            {/* </div>  */}
+      {/* User question */}
+      <label>Your Question</label>
+      <TextBox
+        rows={2}
+        placeholder="Type your question..."
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        disabled={isLoading}
+      />
 
-
-
-      <div className="chat-input-row">
-        <input
-          className="textbox"
-          placeholder="Type your question..."
-        />
-        <Button>Send</Button>
+      <div className="button-row">
+        <Button onClick={handleSend} disabled={isLoading || !question.trim()}>
+          {isLoading ? "Sending..." : "Send"}
+        </Button>
       </div>
     </div>
   );
