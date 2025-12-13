@@ -52,10 +52,11 @@ export default function Chatbot({
     <div className="card">
       <h2 style={{ textAlign: "center" }}>News-bot •ᴗ•</h2>
 
+
       {/* Article context */}
-      {(headline || description) && (
-        <div className="article-context">
-          {headline && (
+      {/* {(headline || description) && (
+        <div className="article-context"> */}
+          {/* {headline && (
             <p>
               <strong>Headline:</strong> {headline}
             </p>
@@ -64,9 +65,9 @@ export default function Chatbot({
             <p>
               <strong>Description:</strong> {description}
             </p>
-          )}
-        </div>
-      )}
+          )} */}
+        {/* </div> */}
+      {/* // )} */}
 
       {/* Chat window with scrollable messages */}
       <div className="chat-window">
