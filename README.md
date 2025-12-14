@@ -11,7 +11,9 @@
 | Sophie Lin  |    @sophieelin |  **Feature Engineering:** Implemented TF-IDF for text feature extraction for text feature extraction, architected the integration of TF-IDF with Word2Vec for improved model effectiveness.<br><br>**Model Development and Evaluation:** Developed a Random Forest model for text classification, including hyperparameter tuning to optimize accuracy and generalization across different article inputs.<br><br>**LLM Integration (Chatbot):** Utilized large language models (GPT-4) to build a chatbot for answering questions and generating summaries for article inputs.<br><br>**AI Agent Development:** Designed and implemented the AI agent to integrate our classification and LLM components into a unified system. Developed agent logic for task routing, context management, and model coordination to produce coherent, accurate, and contextually grounded responses.<br><br>**Full-Stack Development:** Built backend API routes using Flask to support AI agent and chatbot interactions, and connected these to the frontend messaging interface for seamless user experience. |
 | Sonia Broni  |   @bronisonia  | Data Exploration/Wrangling: tokenization, stop-word removal, lemmatization, established code for the data processing, and visualization ; Feature engineering: Word2Vec & TF-IDF ; Model development and evaluation: Random Forest for categorization and evaluation (hyper-parameter tuning with GridSearch), T5 research for summarization; Chatbot: golden questions set; Final Presentation: development, organization and slide deck coordination ; Team Strategies: Cross-check collaboration & assistance in delegation|
 | Erwin Coq   |   @SAMGETUB   |  |
-| Jerry Liu  |   @Jerry13975  |  |
+| Jerry Liu  | @Jerry13975 | **Feature Engineering:** Implemented Bag of Words (BoW) for text feature extraction to represent news articles for classification. Added visualizations to show word frequency distributions and class-specific patterns to help the team understand the dataset and identify important features.<br><br>**Model Development and Evaluation:** Built and evaluated a Naive Bayes model for news categorization. Adjusted model parameters to optimize performance and created visualizations such as heatmaps to analyze model predictions and overall performance. These analyses helped inform decisions on preprocessing and model selection.<br><br>**Summarization Model Research and Integration:** Contributed a curated set of question and answer samples to enhance the evaluation of the T5 summarization pipeline. These samples allowed structured testing of model outputs and ensured the summarization component produced accurate and user-relevant summaries.|
+
+
 
 ---
 
@@ -137,11 +139,38 @@ The real-world significance of the problem and the potential impact of your work
 
 ## 🧠 **Model Development**
 
-**You might consider describing the following (as applicable):**
+For each of the six feature types, we split the labeled training dataset into training and test sets using an 80-20 stratification to ensure balanced representation across classes.
 
-* Model(s) used (e.g., CNN with transfer learning, regression models)
-* Feature selection and Hyperparameter tuning strategies
-* Training setup (e.g., % of data for training/validation, evaluation metric, baseline performance)
+### Feature Types
+- TF-IDF
+- Bag-of-Words
+- Word2Vec
+- TF-IDF + Word2Vec
+- Google Word2Vec (pretrained)
+- TF-IDF + Google Word2Vec
+
+### Models Used
+
+**Logistic Regression**  
+- Features: All six types  
+- Hyperparameters: C = 0.1  
+- Preprocessing: StandardScaler applied  
+- Notes: Regularized model suitable for all feature types  
+
+**Naive Bayes**  
+- Features: Bag-of-Words, TF-IDF  
+- Hyperparameters: alpha = 0.1, fit_prior = True  
+- Notes: Works best with discrete count features rather than embeddings  
+
+**Random Forest**  
+- Features: All six types  
+- Hyperparameters: n_estimators = 200, max_features = 'sqrt', min_samples_leaf = 3, min_samples_split = 10  
+- Notes: Ensemble of trees, handles high-dimensional features effectively  
+
+### Training Setup
+- Dataset split: 80% train, 20% test (stratified)  
+- Evaluation metrics: Accuracy and F1-score  
+- Baseline: Performance of each model compared across all feature types to select the best-performing combinations
 
 
 ---
