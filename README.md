@@ -48,9 +48,7 @@ This project is connected to the Break Through Tech AI Program because during ou
 
 Our host company was Microsoft. The project objective and scope was to build machine learning models in order to categorize news content. Following, we evaluated different LLMs in order to identify the most effective models for news categorization and summarization tasks. We also used prompt engineering to optimize model responses and improve classification accuracy. Using a public dataset from BBC with 2225 articles, we aimed to build a system that could accurately classify previously unseen news articles into their right categories. Categories included business, entertainment, politics, sport, or technology. 
 
-The real-world significance of the problem and the potential impact of your work is that in today’s world of information, we are bombarded with hundreds of news stories, yet still don’t have a complete picture of what’s really going on. This News AI Agent aims to solve exactly that. It categorizes news articles by topic, summarizes them, and even answers users’ questions through an intelligent chatbot.
-
-- The business impact includes: 
+The real-world significance of the problem and the potential impact of your work is that in today’s world of information, we are bombarded with hundreds of news stories, yet still don’t have a complete picture of what’s really going on. This News AI Agent aims to solve exactly that. It categorizes news articles by topic, summarizes them, and even answers users’ questions through an intelligent chatbot. The business impact includes: 
 -   Automated news recommendation to personalize the news according to user’s interests.
 -   Identify topics of untracked news which helps clients save time and reduce unwanted information.
 -   Increase user engagement through AI summaries and interactive Q&A.
