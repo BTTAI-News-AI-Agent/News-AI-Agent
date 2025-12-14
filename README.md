@@ -58,11 +58,22 @@ The real-world significance of the problem and the potential impact of your work
 
 * Dataset overview: Used the BBC News dataset (Kaggle) containing 2,225 labeled news articles across five categories (business, entertainment, politics, sport, tech), split into 1,490 training and 735 testing samples.
 
+<p align="center">
+  <img src="imgs/check_balance.png" width="600">
+</p>
+
+
 * Exploratory analysis: Examined class distribution, article length, and word frequency patterns; categories were relatively balanced, and article lengths followed a right-skewed distribution.
 
 * Data cleaning: Applied text normalization, including lowercasing, tokenization, stop-word removal, punctuation handling, and lemmatization; removed duplicates and extreme length outliers to improve data quality.
+<p align="center">
+  <img src="imgs/remove_outliers.png" width="500">
+</p>
+
 
 * Feature engineering: Transformed text using individual and ensembling of Bag-of-Words, TF-IDF, and Word2Vec embeddings to generate multiple numerical representations for downstream modeling.
+
+
 
 
 
