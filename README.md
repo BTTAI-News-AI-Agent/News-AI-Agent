@@ -28,13 +28,64 @@
 
 ## 👩🏽‍💻 **Setup and Installation**
 
-**Provide step-by-step instructions so someone else can run your code and reproduce your results. Depending on your setup, include:**
 
-* How to clone the repository
-* How to install dependencies
-* How to set up the environment
-* How to access the dataset(s)
-* How to run the notebook or scripts
+### 1) Clone the repository
+```bash
+git clone https://github.com/BTTAI-News-AI-Agent/News-AI-Agent.git
+cd News-AI-Agent
+```
+### 2) Backend setup (Flask)
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+### 3) Set environment variables (for GPT model features)
+If you are using GPT for summarization or the chatbot, set your OpenAI API key:
+
+**Mac/Linux**
+```bash
+export OPENAI_API_KEY="YOUR_KEY_HERE"
+```
+**Windows (PowerShell)**
+```bash
+setx OPENAI_API_KEY "YOUR_KEY_HERE"
+```
+Restart your terminal after running setx.
+
+### 4) Run the backend server
+```bash
+python app.py
+```
+Backend runs at:
+```bash
+ http://localhost:5001
+```
+
+### 5) Frontend setup (React)
+Open a new terminal:
+```bash
+cd frontend
+npm install
+npm start
+```
+Frontend runs at:
+```bash
+ http://localhost:3000
+```
+
+### 6) Accessing the dataset (for training / notebooks)
+```bash
+The BBC News dataset used in this project is publicly available on Kaggle:
+https://www.kaggle.com/c/learn-ai-bbc/overview
+```
+
+After downloading, place the data files in a local data/ directory before running the notebooks located in the notebooks/ folder.
+
+
+
+
 
 ---
 
