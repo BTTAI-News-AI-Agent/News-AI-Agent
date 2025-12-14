@@ -56,12 +56,14 @@ The real-world significance of the problem and the potential impact of your work
 
 ## 📊 **Data Exploration**
 
-**You might consider describing the following (as applicable):**
+* Dataset overview: Used the BBC News dataset (Kaggle) containing 2,225 labeled news articles across five categories (business, entertainment, politics, sport, tech), split into 1,490 training and 735 testing samples.
 
-* The dataset(s) used: origin, format, size, type of data
-* Data exploration and preprocessing approaches
-* Insights from your Exploratory Data Analysis (EDA)
-* Challenges and assumptions when working with the dataset(s)
+* Exploratory analysis: Examined class distribution, article length, and word frequency patterns; categories were relatively balanced, and article lengths followed a right-skewed distribution.
+
+* Data cleaning: Applied text normalization, including lowercasing, tokenization, stop-word removal, punctuation handling, and lemmatization; removed duplicates and extreme length outliers to improve data quality.
+
+* Feature engineering: Transformed text using raw and ensembling of Bag-of-Words, TF-IDF, and Word2Vec embeddings to generate multiple numerical representations for downstream modeling.
+
 
 **Potential visualizations to include:**
 
@@ -86,7 +88,9 @@ The real-world significance of the problem and the potential impact of your work
 
 * Performance metrics (e.g., Accuracy, F1 score, RMSE)
 * How your model performed
-* Insights from evaluating model fairness
+
+  
+
 
 **Potential visualizations to include:**
 
