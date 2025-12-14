@@ -62,12 +62,9 @@ The real-world significance of the problem and the potential impact of your work
 
 * Data cleaning: Applied text normalization, including lowercasing, tokenization, stop-word removal, punctuation handling, and lemmatization; removed duplicates and extreme length outliers to improve data quality.
 
-* Feature engineering: Transformed text using raw and ensembling of Bag-of-Words, TF-IDF, and Word2Vec embeddings to generate multiple numerical representations for downstream modeling.
+* Feature engineering: Transformed text using individual and ensembling of Bag-of-Words, TF-IDF, and Word2Vec embeddings to generate multiple numerical representations for downstream modeling.
 
 
-**Potential visualizations to include:**
-
-* Plots, charts, heatmaps, feature visualizations, sample dataset images
 
 ---
 
