@@ -4,8 +4,6 @@
 
 ### 👥 **Team Members**
 
-**Example:**
-
 | Name             | GitHub Handle | Contribution                                                             |
 |------------------|---------------|--------------------------------------------------------------------------|
 | Ashriya Tuladhar   | @t-ashriya | Data exploration: class balance analysis and visualization, text normalization and lemmatization;Feature engineering: word embedding features (Word2Vec); Model development and evaluation: Naive Bayes for categorization, T5-based summarization; System architecture & development: designed and implemented the complete React–Flask application framework, created backend API routes and frontend component structure; established skeleton code and distributed development tasks across three core features - categorization, summarization, and chatbot; overall project coordination |
