@@ -106,11 +106,29 @@ The real-world significance of the problem and the potential impact of your work
 
 ## 🚀 **Next Steps**
 
-**You might consider addressing the following (as applicable):**
+* AI Agent Guard Rails
 
-* What are some of the limitations of your model?
-* What would you do differently with more time/resources?
-* What additional datasets or techniques would you explore?
+Improve the AI agent by adding stronger guard rails and safety checks to ensure more reliable, controlled, and trustworthy outputs.
+
+* Performance Optimization
+  
+Optimize system performance to achieve lower latency, improving responsiveness and overall user experience.
+
+* Model Deployment
+
+Deploy the classification model behind a clean, production-ready API endpoint that supports scalability, versioning, and future enhancements.
+
+* Retrieval-Augmented Generation (RAG)
+
+Introduce RAG to reduce hallucinations and improve response accuracy by grounding LLM outputs in the source article. This approach may impact response speed due to chunking and retrieval, so performance optimizations should be explored.
+
+* User Interface
+
+Improve the user interface to be more intuitive, easier to use, and visually appealing. Enable users to interact directly with an online model without needing to copy and paste articles manually.
+
+* Containerization
+
+Containerize the application using Docker to ensure consistency across development, testing, and production environments, simplifying deployment and maintenance.
 
 ---
 
