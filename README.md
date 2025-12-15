@@ -168,10 +168,51 @@ For each of the six feature types, we split the labeled training dataset into tr
 
 ## 📈 **Results & Key Findings**
 
-**You might consider describing the following (as applicable):**
+We evaluated all trained models on the held-out test set to compare performance across feature representations and model types.
 
-* Performance metrics (e.g., Accuracy, F1 score, RMSE)
-* How your model performed
+### Performance Metrics
+- **Accuracy**
+- **Precision**
+- **Recall**
+- **F1-score**
+
+These metrics capture both overall performance and balance across classes.
+
+### Best Model Performance
+
+- **Best-performing model:** Naive Bayes  
+- **Best feature type:** Bag-of-Words  
+
+Naive Bayes with Bag-of-Words achieved the highest overall performance across all evaluated model–feature combinations, with the following results:
+- **Test Accuracy:** 0.9795  
+- **Precision:** 0.9803  
+- **Recall:** 0.9778  
+- **F1-score:** 0.9788  
+
+### Model Comparison Summary
+
+**Naive Bayes**
+- Performed best with Bag-of-Words features.
+- Word count–based features align well with how the model processes text data.
+
+**Logistic Regression**
+- Performed best with TF-IDF features.
+- Showed stable results but did not outperform Naive Bayes.
+
+**Random Forest**
+- Performed best with Word2Vec features.
+- Achieved competitive results but slightly lower generalization performance.
+
+### Visualizations and Analysis
+
+The following visual tools were used to support evaluation:
+- Performance metrics heatmap comparing accuracy, precision, recall, and F1-score across models using their best-performing feature representations.
+- Confusion matrix used during evaluation to examine class-level errors for the best-performing model.
+
+### Key Takeaway
+
+Naive Bayes combined with Bag-of-Words features provided the most effective and reliable performance. This shows that using features that fit the way the model works can lead to better performance than more complex models.
+
 
   
 
