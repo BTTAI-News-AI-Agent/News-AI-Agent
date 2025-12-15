@@ -26,13 +26,6 @@
 - Implemented an agentic routing system to intelligently direct user requests to the appropriate pipeline (classification, summarization, or chatbot).
 - Delivered a full-stack React + Flask application, enabling real-time interaction with machine learning models through a user-friendly interface.
 
-**Example:**
-
-- Developed a machine learning model using `[model type/technique]` to address `[challenge project task]`.
-- Achieved `[key metric or result]`, demonstrating `[value or impact]` for `[host company]`.
-- Generated actionable insights to inform business decisions at `[host company or stakeholders]`.
-- Implemented `[specific methodology]` to address industry constraints or expectations.
-
 ---
 
 ## 👩🏽‍💻 **Setup and Installation**
@@ -99,8 +92,6 @@ After downloading, place the data files in a local data/ directory before runnin
 ---
 
 ## 🏗️ **Project Overview**
-
-**Describe:**
 
 This project is connected to the Break Through Tech AI Program because during our Machine Learning Foundations training, we learned and worked through the entire CRISP-DM framework with mini assignments and projects. With this foundation, we brought the real-world framework to life with our News AI Agent project. We persevered from solidfying business understanding as a team, to grappling with the process of deployment that demanded new skills and efficient time management, skills that we also matured in during our ML Foundations course, and our AI Studio professional development course. We truly captured a glimpse of what it is like to be immersed in the world of data scienced/ML, developing a product for every-day users admist the overlooked challenges of deep research, team coordination, and effectual, detailed, documentation.
 
