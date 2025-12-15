@@ -214,14 +214,7 @@ The following visual tools were used to support evaluation:
 Naive Bayes combined with Bag-of-Words features provided the most effective and reliable performance. This shows that using features that fit the way the model works can lead to better performance than more complex models.
 
 
-  
-
-
-**Potential visualizations to include:**
-
-* Confusion matrix, precision-recall curve, feature importance plot, prediction distribution, outputs from fairness or explainability tools
-
-Agent Workflow
+## **Agent Workflow**
 
 <img width="774" height="399" alt="Screenshot 2025-12-14 at 4 05 27 PM" src="https://github.com/user-attachments/assets/26283fb8-65b3-4b18-b88c-5c9bfab77fc3" />
 
