@@ -32,6 +32,11 @@
   <img src="imgs/AI_Agent.png" width="700">
 </p>
 
+--- 
+
+## Presentation
+
+[View our presentation slides](slides/Microsoft%20-%20Final%20Presentation%20Slide%20Deck.pdf)
 
 ## 👩🏽‍💻 **Setup and Installation**
 
