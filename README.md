@@ -1,6 +1,8 @@
 # News-AI-Agent
 
+## Presentation
 
+[View our presentation slides](slides/Microsoft%20-%20Final%20Presentation%20Slide%20Deck.pdf)
 
 ### 👥 **Team Members**
 
@@ -34,9 +36,7 @@
 
 --- 
 
-## Presentation
 
-[View our presentation slides](slides/Microsoft%20-%20Final%20Presentation%20Slide%20Deck.pdf)
 
 ## 👩🏽‍💻 **Setup and Installation**
 
