@@ -266,4 +266,4 @@ This project is licensed under the MIT License.
 
 ## 🙏 **Acknowledgements** 
 
-Thank your Challenge Advisor - Dr. Francesca Lazzeri, TA - Andrii Zahorodnii, Breakthrough Tech AI mentors - Chu Huang & Maxime Nguyen, the Microsoft and MIT representatives and others who supported your project.
+Challenge Advisor - Dr. Francesca Lazzeri, TA - Andrii Zahorodnii, Breakthrough Tech AI mentors - Chu Huang & Maxime Nguyen, the Microsoft and MIT representatives who supported our project.
